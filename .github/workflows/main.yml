@@ -19,7 +19,7 @@ jobs:
           cd /data/mysql_source
           sudo wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.39.tar.gz -P  /data/mysql_source
           cd /data/mysql_source/
-          tar -zxvf mysql-boost-8.0.39.tar.gz 
+          sudo tar -zxvf mysql-boost-8.0.39.tar.gz 
           sudo  mkdir -p /data/mysql_source/build/  && cd   /data/mysql_source/build/
           sudo cmake .. -DWITH_BOOST=/data/mysql/mysql_source/mysql-8.0.39/boost -DWITH_DEBUG=1 -DCMAKE_BUILD_TYPE=1 \
             -DWITH_INNOBASE_STORAGE_ENGINE=1\
