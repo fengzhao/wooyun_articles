@@ -16,7 +16,7 @@ jobs:
         run: |
           sudo apt install -y cmake make gcc g++ libncurses5-dev bison openssl libssl-dev git autoconf automake libtool  unzip build-essential perl pkg-config
           sudo mkdir -p /data/{mysql_source,mysql,build}
-          sudo cd /data/mysql_source
+          cd /data/mysql_source
           wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.39.tar.gz -P  /data/mysql_source
           cd /data/mysql_source/
           tar -zxvf mysql-boost-8.0.39.tar.gz 
