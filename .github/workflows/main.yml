@@ -1,0 +1,49 @@
+name: Publish docs via GitHub Pages
+on:
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build MySQL 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: |
+          apt install -y cmake make gcc g++ libncurses5-dev bison openssl libssl-dev git autoconf automake libtool  unzip build-essential perl pkg-config
+          mkdir -p /data/{mysql_source,mysql,build}
+          cd /data/mysql_source
+          wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-boost-8.0.39.tar.gz -P  /data/mysql_source
+          cd /data/mysql_source/
+          tar -zxvf mysql-boost-8.0.39.tar.gz 
+          mkdir -p /data/mysql_source/build/  && cd   /data/mysql_source/build/
+          cmake .. -DWITH_BOOST=/data/mysql/mysql_source/mysql-8.0.39/boost -DWITH_DEBUG=1 -DCMAKE_BUILD_TYPE=1 \
+            -DWITH_INNOBASE_STORAGE_ENGINE=1\
+            -DWITH_ARCHIVE_STORAGE_ENGINE=1\
+            -DWITH_BLACKHOLE_STORAGE_ENGINE=1\
+            -DWITH_FEDERATED_STORAGE_ENGINE=1\
+            -DWITH_PARTITION_STORAGE_ENGINE=1\
+            -DMYSQL_TCP_PORT=3306\
+            -DENABLED_LOCAL_INFILE=1\
+            -DEXTRA_CHARSETS=all\
+            -DEFAULT_CHARSET=utf8\
+            -DDEFAULT_COLLATION=utf8_general_ci\
+            -DMYSQL_USER=mysql\
+            -DWITH_BINLOG_PREALLOC=ON\
+            -CMAKE_INSTALL_PREFIX=/usr/local/mysql
+          make -j4
+          make install    
+
+
+
+
+
+
+
+
+
+
