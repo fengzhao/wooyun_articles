@@ -34,7 +34,7 @@ jobs:
             -DDEFAULT_COLLATION=utf8_general_ci\
             -DMYSQL_USER=mysql\
             -DWITH_BINLOG_PREALLOC=ON\
-            -CMAKE_INSTALL_PREFIX=/data/mysql/install
+            -DCMAKE_INSTALL_PREFIX=/data/mysql/install
           sudo make -j4
           sudo make install    
 
